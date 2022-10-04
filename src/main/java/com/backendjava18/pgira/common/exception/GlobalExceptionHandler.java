@@ -30,7 +30,7 @@ public class GlobalExceptionHandler {
         return ResponseUtils.error(exception, HttpStatus.BAD_REQUEST);
     }
 
-   // @ExceptionHandler(RuntimeException.class)
+    // @ExceptionHandler(RuntimeException.class)
 //    @ResponseStatus(HttpStatus.BAD_REQUEST)
 //    public ResponseEntity<ResponseDTO> handleGlobalException(
 //            RuntimeException exception
