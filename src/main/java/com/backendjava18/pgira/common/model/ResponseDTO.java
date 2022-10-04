@@ -1,10 +1,12 @@
 package com.backendjava18.pgira.common.model;
 
+import lombok.Builder;
 import lombok.Getter;
 
 import java.util.List;
 
 @Getter
+@Builder
 public class ResponseDTO {
     private Object content;
     private boolean hasErrors;
