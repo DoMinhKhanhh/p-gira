@@ -24,10 +24,17 @@ public interface GenericService<T extends BaseEntity, DTO, ID> {
                 .stream().collect(Collectors.toList());
     }
 
-    default List<DTO> findAllDto(Pageable pageable,Class<DTO> dtoClass){
+    default List<DTO> findAllDto(Pageable pageable, Class<DTO> dtoClass) {
         return getRepository().findAll(pageable)
                 .stream()
-                .map(model -> getMapper().map(model,dtoClass))
+                .map(model -> getMapper().map(model, dtoClass))
+                .collect(Collectors.toList());
+    }
+
+    default List<DTO> findAllDto(Class<DTO> dtoClass) {
+        return getRepository().findAll()
+                .stream()
+                .map(model -> getMapper().map(model, dtoClass))
                 .collect(Collectors.toList());
     }
 

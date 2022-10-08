@@ -16,9 +16,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @SuperBuilder
-@Table(name = RoleEntity.Operation.TABLE_NAME, uniqueConstraints = {
-        @UniqueConstraint(name = "uc_service_g_name", columnNames = {"g_name"})
-})
+@Table(name = RoleEntity.Operation.TABLE_NAME)
 @Entity
 public class Operation extends BaseEntity {
 
