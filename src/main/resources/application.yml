@@ -1,24 +1,30 @@
-
 server:
   port: 8086
 
 spring:
+  # remove this on real project
   security:
     user:
       name: admin
       password: 1
+
+  #remove this in real project to replace for this u can use keycloak or vault
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
     password: 1234
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: update #in real project use validate, hibernate khi run chi kiem tra voi db.migration
     generate-ddl: true
     show-sql: true
   flyway:
-    enabled: false
+    enabled: false # dua tren validate -> true
     driver-class-name: org.postgresql.Driver
+    locations:
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
 springdoc:
   swagger-ui:
     path: swagger-ui.html

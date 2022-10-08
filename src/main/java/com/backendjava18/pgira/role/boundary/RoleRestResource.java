@@ -2,13 +2,14 @@ package com.backendjava18.pgira.role.boundary;
 
 import com.backendjava18.pgira.common.util.ResponseUtils;
 import com.backendjava18.pgira.role.dto.RoleDTO;
-import com.backendjava18.pgira.role.model.Role;
 import com.backendjava18.pgira.role.service.RoleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/roles")
@@ -25,14 +26,24 @@ public class RoleRestResource {
     }
 
     @PostMapping("")
-    public Object save(@RequestBody @Valid RoleDTO roleDTO){
-       // return new ResponseEntity<>(roleService.save(roleDTO), HttpStatus.CREATED);
+    public Object save(@RequestBody @Valid RoleDTO roleDTO) {
+        // return new ResponseEntity<>(roleService.save(roleDTO), HttpStatus.CREATED);
         return ResponseUtils.get(roleService.save(roleDTO), HttpStatus.CREATED);
     }
 
     @DeleteMapping("")
-    public Object delete(@RequestParam("code") String code){
+    public Object delete(@RequestParam("code") String code) {
         roleService.delete(code);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("{role-id}/add-operations")
+    public ResponseEntity<?> addOperations(
+            @RequestBody List<UUID> ids,
+            @PathVariable("role-id") UUID roleId
+    ) {
+        return ResponseUtils.get(
+                roleService.addOperations(roleId, ids)
+                , HttpStatus.OK);
     }
 }
