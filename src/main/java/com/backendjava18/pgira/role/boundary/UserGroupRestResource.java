@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/usergroup")
+@RequestMapping("api/v1/usergroup")
 public class UserGroupRestResource {
     private final UserGroupService service;
 
