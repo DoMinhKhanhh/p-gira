@@ -22,7 +22,7 @@ public class ExceptionUtils {
     }
 
     public static List<String> getErrors(RuntimeException exception){
-        return List.of(DEFAULT_UNEXPECTED_MESSAGE);
+        return List.of(exception.getMessage());
     }
 
     public static List<String> getErrors(MethodArgumentNotValidException exception){

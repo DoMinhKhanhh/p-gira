@@ -26,15 +26,15 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<ResponseDTO> handleMethodArgumentNotValidException(
             MethodArgumentNotValidException exception
-    ){
+    ) {
         return ResponseUtils.error(exception, HttpStatus.BAD_REQUEST);
     }
 
-    // @ExceptionHandler(RuntimeException.class)
-//    @ResponseStatus(HttpStatus.BAD_REQUEST)
-//    public ResponseEntity<ResponseDTO> handleGlobalException(
-//            RuntimeException exception
-//    ){
-//        return ResponseUtils.error(exception, HttpStatus.BAD_REQUEST);
-//    }
+    @ExceptionHandler(GiraBusinessException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<ResponseDTO> handleGlobalException(
+            GiraBusinessException exception
+    ) {
+        return ResponseUtils.error(exception, HttpStatus.BAD_REQUEST);
+    }
 }

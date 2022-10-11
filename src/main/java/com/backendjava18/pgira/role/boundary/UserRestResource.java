@@ -2,16 +2,16 @@ package com.backendjava18.pgira.role.boundary;
 
 import com.backendjava18.pgira.common.util.ResponseUtils;
 import com.backendjava18.pgira.role.dto.UserDTO;
-import com.backendjava18.pgira.role.model.User;
 import com.backendjava18.pgira.role.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.UUID;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("api/v1/users")
 public class UserRestResource {
 
     private final UserService userService;
@@ -28,9 +28,15 @@ public class UserRestResource {
     @PostMapping
     public ResponseEntity<?> saveUser(@RequestBody @Valid UserDTO userDTO) {
         return ResponseUtils.get(
-                userService.save(userDTO, User.class, UserDTO.class)
+                userService.createUser(userDTO)
                 , HttpStatus.OK
         );
+    }
+
+    @DeleteMapping
+    public Object deleteUser(@RequestParam("id") UUID id) {
+        userService.deleteById(id);
+        return ResponseUtils.get("", HttpStatus.OK);
     }
 
 }
