@@ -17,8 +17,11 @@ public class OpenApiConfiguration {
     public OpenAPI getOpenApi(){
         //http://localhost:8088/swagger-ui/index.html
         return new OpenAPI()
-                .components(new Components().addSecuritySchemes("bearerAuth",
-                        new SecurityScheme().type(SecurityScheme.Type.HTTP).scheme("bearer")))
+                .components(new Components().addSecuritySchemes("bearerAuth"
+                        , new SecurityScheme()
+                                .type(SecurityScheme.Type.HTTP)
+                                .scheme("bearer")
+                                .bearerFormat("JWT")))
                 .info(new Info()
                     .title("Gira Application")
                     .description("Service for Learning Purpose")
