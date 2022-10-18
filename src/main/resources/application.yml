@@ -1,9 +1,10 @@
 server:
-  port: 8086
+  port: 8088
   servlet:
     context-path: /pgira
 
 spring:
+
   # remove this on real project
   security:
     user:
@@ -12,25 +13,39 @@ spring:
 
   #remove this in real project to replace for this u can use keycloak or vault
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://localhost:5410/postgres
     username: postgres
     password: 1234
+    # driver-class-name: org.postgresql.Driver khong can thiet co chuc nang auto dua tren url
+
   jpa:
     hibernate:
       ddl-auto: update #in real project use validate, hibernate khi run chi kiem tra voi db.migration
     generate-ddl: true
     show-sql: true
+
   flyway:
     enabled: false # dua tren validate -> true
     driver-class-name: org.postgresql.Driver
-    locations:
+    baseline-on-migrate: true
+
   jackson:
     serialization:
       FAIL_ON_EMPTY_BEANS: false
+
+
+## template document api
 springdoc:
   swagger-ui:
     path: swagger-ui.html
     operationsSorter: method
 
-
+logging:
+  file:
+    # doi voi path co co che auto dong goi theo ngay
+    path: D:\Workspace\SPACE_DEMO\logs-test\logs-error.log
+    #name: logs/logs-error.log
+  level:
+    org.springframework.web: ERROR
+    com.backendjava18.pgira: ERROR
 
